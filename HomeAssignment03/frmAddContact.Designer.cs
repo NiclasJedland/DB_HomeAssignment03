@@ -1,6 +1,6 @@
 ﻿namespace HomeAssignment03
 {
-	partial class Adressbook
+	partial class frmAddContact
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,14 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.txtSearch = new System.Windows.Forms.TextBox();
+			this.lblWarning = new System.Windows.Forms.Label();
 			this.grpInformation = new System.Windows.Forms.GroupBox();
+			this.btnCancel = new System.Windows.Forms.Button();
 			this.txtName = new System.Windows.Forms.TextBox();
 			this.lblBirthday = new System.Windows.Forms.Label();
 			this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
-			this.btnRemove = new System.Windows.Forms.Button();
-			this.btnAddContact = new System.Windows.Forms.Button();
-			this.btnSaveChanges = new System.Windows.Forms.Button();
+			this.btnSave = new System.Windows.Forms.Button();
 			this.txtEmail = new System.Windows.Forms.TextBox();
 			this.lblEmail = new System.Windows.Forms.Label();
 			this.lblTelephoneNumber = new System.Windows.Forms.Label();
@@ -47,32 +46,25 @@
 			this.txtAdress = new System.Windows.Forms.TextBox();
 			this.lblAdress = new System.Windows.Forms.Label();
 			this.lblName = new System.Windows.Forms.Label();
-			this.grpPeople = new System.Windows.Forms.GroupBox();
-			this.lstPeople = new System.Windows.Forms.ListBox();
-			this.lblWarning = new System.Windows.Forms.Label();
-			this.gbSearch = new System.Windows.Forms.GroupBox();
 			this.grpInformation.SuspendLayout();
-			this.grpPeople.SuspendLayout();
-			this.gbSearch.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// txtSearch
+			// lblWarning
 			// 
-			this.txtSearch.Location = new System.Drawing.Point(7, 26);
-			this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
-			this.txtSearch.Name = "txtSearch";
-			this.txtSearch.Size = new System.Drawing.Size(249, 22);
-			this.txtSearch.TabIndex = 1;
-			this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+			this.lblWarning.AutoSize = true;
+			this.lblWarning.Location = new System.Drawing.Point(24, -5);
+			this.lblWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.lblWarning.Name = "lblWarning";
+			this.lblWarning.Size = new System.Drawing.Size(0, 17);
+			this.lblWarning.TabIndex = 9;
 			// 
 			// grpInformation
 			// 
+			this.grpInformation.Controls.Add(this.btnCancel);
 			this.grpInformation.Controls.Add(this.txtName);
 			this.grpInformation.Controls.Add(this.lblBirthday);
 			this.grpInformation.Controls.Add(this.dtpBirthday);
-			this.grpInformation.Controls.Add(this.btnRemove);
-			this.grpInformation.Controls.Add(this.btnAddContact);
-			this.grpInformation.Controls.Add(this.btnSaveChanges);
+			this.grpInformation.Controls.Add(this.btnSave);
 			this.grpInformation.Controls.Add(this.txtEmail);
 			this.grpInformation.Controls.Add(this.lblEmail);
 			this.grpInformation.Controls.Add(this.lblTelephoneNumber);
@@ -84,14 +76,26 @@
 			this.grpInformation.Controls.Add(this.txtAdress);
 			this.grpInformation.Controls.Add(this.lblAdress);
 			this.grpInformation.Controls.Add(this.lblName);
-			this.grpInformation.Location = new System.Drawing.Point(291, 26);
+			this.grpInformation.Location = new System.Drawing.Point(16, 15);
 			this.grpInformation.Margin = new System.Windows.Forms.Padding(4);
 			this.grpInformation.Name = "grpInformation";
 			this.grpInformation.Padding = new System.Windows.Forms.Padding(4);
-			this.grpInformation.Size = new System.Drawing.Size(437, 326);
-			this.grpInformation.TabIndex = 5;
+			this.grpInformation.Size = new System.Drawing.Size(437, 317);
+			this.grpInformation.TabIndex = 8;
 			this.grpInformation.TabStop = false;
 			this.grpInformation.Text = "Information";
+			// 
+			// btnCancel
+			// 
+			this.btnCancel.Location = new System.Drawing.Point(146, 255);
+			this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.Size = new System.Drawing.Size(133, 42);
+			this.btnCancel.TabIndex = 10;
+			this.btnCancel.Text = "Cancel";
+			this.btnCancel.UseVisualStyleBackColor = true;
+			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+			this.btnCancel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnCancel_KeyDown);
 			// 
 			// txtName
 			// 
@@ -99,7 +103,8 @@
 			this.txtName.Margin = new System.Windows.Forms.Padding(4);
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(280, 22);
-			this.txtName.TabIndex = 2;
+			this.txtName.TabIndex = 1;
+			this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
 			// 
 			// lblBirthday
 			// 
@@ -117,40 +122,20 @@
 			this.dtpBirthday.Margin = new System.Windows.Forms.Padding(4);
 			this.dtpBirthday.Name = "dtpBirthday";
 			this.dtpBirthday.Size = new System.Drawing.Size(280, 22);
-			this.dtpBirthday.TabIndex = 9;
+			this.dtpBirthday.TabIndex = 8;
+			this.dtpBirthday.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpBirthday_KeyDown);
 			// 
-			// btnRemove
+			// btnSave
 			// 
-			this.btnRemove.Location = new System.Drawing.Point(6, 260);
-			this.btnRemove.Margin = new System.Windows.Forms.Padding(4);
-			this.btnRemove.Name = "btnRemove";
-			this.btnRemove.Size = new System.Drawing.Size(133, 42);
-			this.btnRemove.TabIndex = 12;
-			this.btnRemove.Text = "Remove";
-			this.btnRemove.UseVisualStyleBackColor = true;
-			this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-			// 
-			// btnAddContact
-			// 
-			this.btnAddContact.Location = new System.Drawing.Point(151, 260);
-			this.btnAddContact.Margin = new System.Windows.Forms.Padding(4);
-			this.btnAddContact.Name = "btnAddContact";
-			this.btnAddContact.Size = new System.Drawing.Size(133, 42);
-			this.btnAddContact.TabIndex = 11;
-			this.btnAddContact.Text = "Add A New Contact";
-			this.btnAddContact.UseVisualStyleBackColor = true;
-			this.btnAddContact.Click += new System.EventHandler(this.btnAddContact_Click);
-			// 
-			// btnSaveChanges
-			// 
-			this.btnSaveChanges.Location = new System.Drawing.Point(294, 260);
-			this.btnSaveChanges.Margin = new System.Windows.Forms.Padding(4);
-			this.btnSaveChanges.Name = "btnSaveChanges";
-			this.btnSaveChanges.Size = new System.Drawing.Size(133, 42);
-			this.btnSaveChanges.TabIndex = 10;
-			this.btnSaveChanges.Text = "Save Changes";
-			this.btnSaveChanges.UseVisualStyleBackColor = true;
-			this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
+			this.btnSave.Location = new System.Drawing.Point(294, 255);
+			this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+			this.btnSave.Name = "btnSave";
+			this.btnSave.Size = new System.Drawing.Size(133, 42);
+			this.btnSave.TabIndex = 9;
+			this.btnSave.Text = "Save";
+			this.btnSave.UseVisualStyleBackColor = true;
+			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+			this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
 			// 
 			// txtEmail
 			// 
@@ -158,7 +143,8 @@
 			this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
 			this.txtEmail.Name = "txtEmail";
 			this.txtEmail.Size = new System.Drawing.Size(280, 22);
-			this.txtEmail.TabIndex = 8;
+			this.txtEmail.TabIndex = 7;
+			this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
 			// 
 			// lblEmail
 			// 
@@ -186,8 +172,10 @@
 			this.txtPhoneNumber.Margin = new System.Windows.Forms.Padding(4);
 			this.txtPhoneNumber.Name = "txtPhoneNumber";
 			this.txtPhoneNumber.Size = new System.Drawing.Size(280, 22);
-			this.txtPhoneNumber.TabIndex = 7;
+			this.txtPhoneNumber.TabIndex = 6;
+			this.txtPhoneNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPhoneNumber_KeyDown);
 			this.txtPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhoneNumber_KeyPress);
+
 			// 
 			// txtCity
 			// 
@@ -195,7 +183,8 @@
 			this.txtCity.Margin = new System.Windows.Forms.Padding(4);
 			this.txtCity.Name = "txtCity";
 			this.txtCity.Size = new System.Drawing.Size(280, 22);
-			this.txtCity.TabIndex = 6;
+			this.txtCity.TabIndex = 5;
+			this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCity_KeyDown);
 			// 
 			// lblCity
 			// 
@@ -213,7 +202,8 @@
 			this.txtZipCode.Margin = new System.Windows.Forms.Padding(4);
 			this.txtZipCode.Name = "txtZipCode";
 			this.txtZipCode.Size = new System.Drawing.Size(280, 22);
-			this.txtZipCode.TabIndex = 5;
+			this.txtZipCode.TabIndex = 4;
+			this.txtZipCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZipCode_KeyDown);
 			this.txtZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtZipCode_KeyPress);
 			// 
 			// lblZipcode
@@ -232,7 +222,8 @@
 			this.txtAdress.Margin = new System.Windows.Forms.Padding(4);
 			this.txtAdress.Name = "txtAdress";
 			this.txtAdress.Size = new System.Drawing.Size(280, 22);
-			this.txtAdress.TabIndex = 4;
+			this.txtAdress.TabIndex = 3;
+			this.txtAdress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAdress_KeyDown);
 			// 
 			// lblAdress
 			// 
@@ -254,69 +245,21 @@
 			this.lblName.TabIndex = 0;
 			this.lblName.Text = "Name:";
 			// 
-			// grpPeople
-			// 
-			this.grpPeople.Controls.Add(this.lstPeople);
-			this.grpPeople.Location = new System.Drawing.Point(11, 14);
-			this.grpPeople.Margin = new System.Windows.Forms.Padding(4);
-			this.grpPeople.Name = "grpPeople";
-			this.grpPeople.Padding = new System.Windows.Forms.Padding(4);
-			this.grpPeople.Size = new System.Drawing.Size(267, 295);
-			this.grpPeople.TabIndex = 4;
-			this.grpPeople.TabStop = false;
-			this.grpPeople.Text = "People";
-			// 
-			// lstPeople
-			// 
-			this.lstPeople.FormattingEnabled = true;
-			this.lstPeople.ItemHeight = 16;
-			this.lstPeople.Location = new System.Drawing.Point(8, 23);
-			this.lstPeople.Margin = new System.Windows.Forms.Padding(4);
-			this.lstPeople.Name = "lstPeople";
-			this.lstPeople.Size = new System.Drawing.Size(249, 260);
-			this.lstPeople.TabIndex = 0;
-			this.lstPeople.SelectedIndexChanged += new System.EventHandler(this.lstPeople_SelectedIndexChanged);
-			// 
-			// lblWarning
-			// 
-			this.lblWarning.AutoSize = true;
-			this.lblWarning.Location = new System.Drawing.Point(433, 6);
-			this.lblWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.lblWarning.Name = "lblWarning";
-			this.lblWarning.Size = new System.Drawing.Size(0, 17);
-			this.lblWarning.TabIndex = 22;
-			// 
-			// gbSearch
-			// 
-			this.gbSearch.Controls.Add(this.txtSearch);
-			this.gbSearch.Location = new System.Drawing.Point(12, 304);
-			this.gbSearch.Name = "gbSearch";
-			this.gbSearch.Size = new System.Drawing.Size(266, 68);
-			this.gbSearch.TabIndex = 23;
-			this.gbSearch.TabStop = false;
-			this.gbSearch.Text = "Search";
-			// 
-			// Adressbook
+			// frmAddContact
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1093, 389);
-			this.Controls.Add(this.gbSearch);
+			this.ClientSize = new System.Drawing.Size(473, 343);
 			this.Controls.Add(this.lblWarning);
 			this.Controls.Add(this.grpInformation);
-			this.Controls.Add(this.grpPeople);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.MaximizeBox = false;
-			this.Name = "Adressbook";
+			this.Name = "frmAddContact";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Contacts";
-			this.Load += new System.EventHandler(this.Adressbook_Load);
+			this.Text = "Add New Contact";
 			this.grpInformation.ResumeLayout(false);
 			this.grpInformation.PerformLayout();
-			this.grpPeople.ResumeLayout(false);
-			this.gbSearch.ResumeLayout(false);
-			this.gbSearch.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -324,14 +267,13 @@
 
 		#endregion
 
-		private System.Windows.Forms.TextBox txtSearch;
+		private System.Windows.Forms.Label lblWarning;
 		private System.Windows.Forms.GroupBox grpInformation;
+		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.TextBox txtName;
 		private System.Windows.Forms.Label lblBirthday;
 		private System.Windows.Forms.DateTimePicker dtpBirthday;
-		private System.Windows.Forms.Button btnRemove;
-		private System.Windows.Forms.Button btnAddContact;
-		private System.Windows.Forms.Button btnSaveChanges;
+		private System.Windows.Forms.Button btnSave;
 		private System.Windows.Forms.TextBox txtEmail;
 		private System.Windows.Forms.Label lblEmail;
 		private System.Windows.Forms.Label lblTelephoneNumber;
@@ -343,10 +285,5 @@
 		private System.Windows.Forms.TextBox txtAdress;
 		private System.Windows.Forms.Label lblAdress;
 		private System.Windows.Forms.Label lblName;
-		private System.Windows.Forms.GroupBox grpPeople;
-		private System.Windows.Forms.ListBox lstPeople;
-		private System.Windows.Forms.Label lblWarning;
-		private System.Windows.Forms.GroupBox gbSearch;
 	}
 }
-

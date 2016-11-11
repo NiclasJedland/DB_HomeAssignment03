@@ -9,7 +9,7 @@ namespace HomeAssignment03
 {
 	public partial class Adressbook : Form
 	{
-		public Form1()
+		public Adressbook()
 		{
 			InitializeComponent();
 		}
@@ -34,7 +34,7 @@ namespace HomeAssignment03
 
 					var toBeRemoved = lstPeople.SelectedItem;
 
-					using(var db = new PersonContext())
+					using(var db = new ContactBookEntities())
 					{
 						db.Entry(toBeRemoved).State = EntityState.Deleted;
 
@@ -60,12 +60,13 @@ namespace HomeAssignment03
 		}
 
 		private void btnSaveChanges_Click(object sender, EventArgs e)
-		{
+		{                       /*
+
 			if(lstPeople.SelectedItem != null)
 			{
 				if(MessageBox.Show("Update " + lstPeople.SelectedItem, "Save changes?", MessageBoxButtons.YesNo) == DialogResult.Yes)
 				{
-					using(var db = new PersonContext())
+					using(var db = new ContactBookEntities())
 					{
 						Timer timer = new Timer();
 						timer.Interval = 3000;
@@ -73,7 +74,6 @@ namespace HomeAssignment03
 						timer.Tick += new EventHandler(FadeWarningText);
 
 						var toBeUpdated = (Person)lstPeople.SelectedItem;
-
 						toBeUpdated.Name = txtName.Text;
 						toBeUpdated.Adress = txtAdress.Text;
 						toBeUpdated.ZipCode = txtZipCode.Text;
@@ -94,10 +94,12 @@ namespace HomeAssignment03
 				}
 				txtSearch.Text = "";
 			}
+			*/
 		}
 
 		private void lstPeople_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			/*
 			if(lstPeople.SelectedItem != null)
 			{
 				var selectedItem = (Person)lstPeople.SelectedItem;
@@ -110,6 +112,7 @@ namespace HomeAssignment03
 				txtEmail.Text = selectedItem.Email;
 				dtpBirthday.Value = selectedItem.Birthday;
 			}
+			*/
 		}
 
 		private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -130,8 +133,8 @@ namespace HomeAssignment03
 			txtPhoneNumber.Text = "";
 			txtEmail.Text = "";
 			dtpBirthday.Value = DateTime.Today;
-
-			using(var db = new PersonContext())
+			/*
+			using(var db = new ContactBookEntities())
 			{
 				var people = db.People.OrderBy(s => s.Name);
 
@@ -154,6 +157,7 @@ namespace HomeAssignment03
 					lstPeople.Items.Add(item);
 				}
 			}
+			*/
 		}
 
 		private void FadeWarningText(object sender, EventArgs e)
