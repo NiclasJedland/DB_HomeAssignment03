@@ -14,6 +14,8 @@ namespace HomeAssignment03
 {
 	public partial class frmAddContact : Form
 	{
+		ContactBookEntities db = new ContactBookEntities();
+
 		//Custom Events
 		public event EventHandler<EventArgs> SavedDatabase;
 		protected virtual void OnSavedDatabase()
@@ -24,6 +26,16 @@ namespace HomeAssignment03
 		public frmAddContact()
 		{
 			InitializeComponent();
+
+			txtAddressType.Items.Add("Home");
+			txtAddressType.Items.Add("Work");
+
+			txtPhoneType.Items.Add("Home");
+			txtPhoneType.Items.Add("Mobile");
+			txtPhoneType.Items.Add("Work");
+
+			txtAddressType.SelectedIndex = 0;
+			txtPhoneType.SelectedIndex = 0;
 		}
 
 		private void btnCancel_Click(object sender, EventArgs e)
@@ -108,18 +120,29 @@ namespace HomeAssignment03
 
 		private void SaveAndClose()
 		{
-			/*
-			var newPerson = new Person(txtName.Text, txtAdress.Text, txtZipCode.Text, txtCity.Text, txtPhoneNumber.Text, txtEmail.Text, dtpBirthday.Value);
-
-			using(var db = new ContactBookEntities())
+			if(txtName.Text.Trim().Length > 0)
 			{
-				db.People.Add(newPerson);
-				db.SaveChanges();
-			}
+				db.spInsertContact(txtName.Text, txtPhoneNr.Text, txtPhoneType.Text, txtAddress.Text, txtZipCode.Text, txtCity.Text, txtCountry.Text, txtAddressType.Text);
 
-			OnSavedDatabase();
-			this.Close();
-			*/
+				OnSavedDatabase();
+				this.Close();
+			}
+			else
+			{
+				Timer timer = new Timer();
+				timer.Interval = 3000;
+				timer.Enabled = true;
+				timer.Tick += new EventHandler(FadeWarningText);
+				lblName.ForeColor = Color.Red;
+				lblWarning.ForeColor = Color.Red;
+				lblWarning.Text = "Name Required!";
+			}	
+		}
+
+		private void FadeWarningText(object sender, EventArgs e)
+		{
+			lblWarning.Text = "";
+			lblName.ForeColor = Color.Black;
 		}
 	}
 }

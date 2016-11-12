@@ -12,6 +12,8 @@ namespace HomeAssignment03
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ContactBookEntities : DbContext
     {
@@ -32,5 +34,121 @@ namespace HomeAssignment03
         public virtual DbSet<PhoneNumber> PhoneNumbers { get; set; }
         public virtual DbSet<GetAdress> GetAdresses { get; set; }
         public virtual DbSet<GetPhone> GetPhones { get; set; }
+        public virtual DbSet<vwGetLatestInsertedContact> vwGetLatestInsertedContacts { get; set; }
+    
+        public virtual int spDeleteContact(Nullable<int> contactId)
+        {
+            var contactIdParameter = contactId.HasValue ?
+                new ObjectParameter("ContactId", contactId) :
+                new ObjectParameter("ContactId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spDeleteContact", contactIdParameter);
+        }
+    
+        public virtual int spInsertContact(string name, string number, string phoneType, string adress, string zipCode, string city, string country, string adressType)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var numberParameter = number != null ?
+                new ObjectParameter("Number", number) :
+                new ObjectParameter("Number", typeof(string));
+    
+            var phoneTypeParameter = phoneType != null ?
+                new ObjectParameter("PhoneType", phoneType) :
+                new ObjectParameter("PhoneType", typeof(string));
+    
+            var adressParameter = adress != null ?
+                new ObjectParameter("Adress", adress) :
+                new ObjectParameter("Adress", typeof(string));
+    
+            var zipCodeParameter = zipCode != null ?
+                new ObjectParameter("ZipCode", zipCode) :
+                new ObjectParameter("ZipCode", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var countryParameter = country != null ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(string));
+    
+            var adressTypeParameter = adressType != null ?
+                new ObjectParameter("AdressType", adressType) :
+                new ObjectParameter("AdressType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertContact", nameParameter, numberParameter, phoneTypeParameter, adressParameter, zipCodeParameter, cityParameter, countryParameter, adressTypeParameter);
+        }
+    
+        public virtual int spRemoveAddress(Nullable<int> contactAddress)
+        {
+            var contactAddressParameter = contactAddress.HasValue ?
+                new ObjectParameter("ContactAddress", contactAddress) :
+                new ObjectParameter("ContactAddress", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRemoveAddress", contactAddressParameter);
+        }
+    
+        public virtual int spRemovePhoneNumber(Nullable<int> contactPhoneID)
+        {
+            var contactPhoneIDParameter = contactPhoneID.HasValue ?
+                new ObjectParameter("ContactPhoneID", contactPhoneID) :
+                new ObjectParameter("ContactPhoneID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRemovePhoneNumber", contactPhoneIDParameter);
+        }
+    
+        public virtual int InsertTestSubjects()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertTestSubjects");
+        }
+    
+        public virtual int spInsertNewAddress(Nullable<int> contactId, string address, string zipCode, string city, string country, string type)
+        {
+            var contactIdParameter = contactId.HasValue ?
+                new ObjectParameter("ContactId", contactId) :
+                new ObjectParameter("ContactId", typeof(int));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("Address", address) :
+                new ObjectParameter("Address", typeof(string));
+    
+            var zipCodeParameter = zipCode != null ?
+                new ObjectParameter("ZipCode", zipCode) :
+                new ObjectParameter("ZipCode", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var countryParameter = country != null ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(string));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("Type", type) :
+                new ObjectParameter("Type", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertNewAddress", contactIdParameter, addressParameter, zipCodeParameter, cityParameter, countryParameter, typeParameter);
+        }
+    
+        public virtual int spInsertNewPhone(Nullable<int> contactId, string number, string type)
+        {
+            var contactIdParameter = contactId.HasValue ?
+                new ObjectParameter("ContactId", contactId) :
+                new ObjectParameter("ContactId", typeof(int));
+    
+            var numberParameter = number != null ?
+                new ObjectParameter("Number", number) :
+                new ObjectParameter("Number", typeof(string));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("Type", type) :
+                new ObjectParameter("Type", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertNewPhone", contactIdParameter, numberParameter, typeParameter);
+        }
     }
 }

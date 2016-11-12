@@ -34,13 +34,27 @@
 			this.txtName = new System.Windows.Forms.TextBox();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.grpInformation = new System.Windows.Forms.GroupBox();
+			this.txtAddress = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.txtCity = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.txtZipCode = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.txtCountry = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txtPhoneNr = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.txtAddressType = new System.Windows.Forms.ComboBox();
+			this.txtPhoneType = new System.Windows.Forms.ComboBox();
 			this.grpInformation.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblWarning
 			// 
 			this.lblWarning.AutoSize = true;
-			this.lblWarning.Location = new System.Drawing.Point(18, -4);
+			this.lblWarning.Location = new System.Drawing.Point(129, 0);
 			this.lblWarning.Name = "lblWarning";
 			this.lblWarning.Size = new System.Drawing.Size(0, 13);
 			this.lblWarning.TabIndex = 9;
@@ -56,7 +70,7 @@
 			// 
 			// btnSave
 			// 
-			this.btnSave.Location = new System.Drawing.Point(220, 207);
+			this.btnSave.Location = new System.Drawing.Point(224, 228);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(100, 34);
 			this.btnSave.TabIndex = 9;
@@ -67,15 +81,15 @@
 			// 
 			// txtName
 			// 
-			this.txtName.Location = new System.Drawing.Point(110, 19);
+			this.txtName.Location = new System.Drawing.Point(85, 19);
 			this.txtName.Name = "txtName";
-			this.txtName.Size = new System.Drawing.Size(211, 20);
+			this.txtName.Size = new System.Drawing.Size(239, 20);
 			this.txtName.TabIndex = 1;
 			this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.Location = new System.Drawing.Point(110, 207);
+			this.btnCancel.Location = new System.Drawing.Point(118, 228);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(100, 34);
 			this.btnCancel.TabIndex = 10;
@@ -87,21 +101,149 @@
 			// grpInformation
 			// 
 			this.grpInformation.Controls.Add(this.btnCancel);
-			this.grpInformation.Controls.Add(this.txtName);
+			this.grpInformation.Controls.Add(this.txtPhoneType);
+			this.grpInformation.Controls.Add(this.txtAddressType);
+			this.grpInformation.Controls.Add(this.label6);
 			this.grpInformation.Controls.Add(this.btnSave);
+			this.grpInformation.Controls.Add(this.txtPhoneNr);
+			this.grpInformation.Controls.Add(this.label7);
+			this.grpInformation.Controls.Add(this.label4);
+			this.grpInformation.Controls.Add(this.txtCountry);
+			this.grpInformation.Controls.Add(this.label5);
+			this.grpInformation.Controls.Add(this.txtCity);
+			this.grpInformation.Controls.Add(this.label2);
+			this.grpInformation.Controls.Add(this.txtZipCode);
+			this.grpInformation.Controls.Add(this.label3);
+			this.grpInformation.Controls.Add(this.txtAddress);
+			this.grpInformation.Controls.Add(this.label1);
+			this.grpInformation.Controls.Add(this.txtName);
 			this.grpInformation.Controls.Add(this.lblName);
 			this.grpInformation.Location = new System.Drawing.Point(12, 12);
 			this.grpInformation.Name = "grpInformation";
-			this.grpInformation.Size = new System.Drawing.Size(328, 258);
+			this.grpInformation.Size = new System.Drawing.Size(347, 272);
 			this.grpInformation.TabIndex = 8;
 			this.grpInformation.TabStop = false;
 			this.grpInformation.Text = "Information";
+			// 
+			// txtAddress
+			// 
+			this.txtAddress.Location = new System.Drawing.Point(85, 45);
+			this.txtAddress.Name = "txtAddress";
+			this.txtAddress.Size = new System.Drawing.Size(239, 20);
+			this.txtAddress.TabIndex = 3;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(6, 48);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(48, 13);
+			this.label1.TabIndex = 2;
+			this.label1.Text = "Address:";
+			// 
+			// txtCity
+			// 
+			this.txtCity.Location = new System.Drawing.Point(85, 97);
+			this.txtCity.Name = "txtCity";
+			this.txtCity.Size = new System.Drawing.Size(239, 20);
+			this.txtCity.TabIndex = 7;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(6, 100);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(27, 13);
+			this.label2.TabIndex = 6;
+			this.label2.Text = "City:";
+			// 
+			// txtZipCode
+			// 
+			this.txtZipCode.Location = new System.Drawing.Point(85, 71);
+			this.txtZipCode.Name = "txtZipCode";
+			this.txtZipCode.Size = new System.Drawing.Size(239, 20);
+			this.txtZipCode.TabIndex = 5;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(6, 74);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(53, 13);
+			this.label3.TabIndex = 4;
+			this.label3.Text = "Zip Code:";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(6, 152);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(75, 13);
+			this.label4.TabIndex = 10;
+			this.label4.Text = "Address Type:";
+			// 
+			// txtCountry
+			// 
+			this.txtCountry.Location = new System.Drawing.Point(85, 123);
+			this.txtCountry.Name = "txtCountry";
+			this.txtCountry.Size = new System.Drawing.Size(239, 20);
+			this.txtCountry.TabIndex = 9;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(6, 126);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(46, 13);
+			this.label5.TabIndex = 8;
+			this.label5.Text = "Country:";
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(6, 204);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(68, 13);
+			this.label6.TabIndex = 14;
+			this.label6.Text = "Phone Type:";
+			// 
+			// txtPhoneNr
+			// 
+			this.txtPhoneNr.Location = new System.Drawing.Point(85, 175);
+			this.txtPhoneNr.Name = "txtPhoneNr";
+			this.txtPhoneNr.Size = new System.Drawing.Size(239, 20);
+			this.txtPhoneNr.TabIndex = 13;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(6, 178);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(81, 13);
+			this.label7.TabIndex = 12;
+			this.label7.Text = "Phone Number:";
+			// 
+			// txtAddressType
+			// 
+			this.txtAddressType.FormattingEnabled = true;
+			this.txtAddressType.Location = new System.Drawing.Point(85, 148);
+			this.txtAddressType.Name = "txtAddressType";
+			this.txtAddressType.Size = new System.Drawing.Size(239, 21);
+			this.txtAddressType.TabIndex = 11;
+			// 
+			// txtPhoneType
+			// 
+			this.txtPhoneType.FormattingEnabled = true;
+			this.txtPhoneType.Location = new System.Drawing.Point(85, 201);
+			this.txtPhoneType.Name = "txtPhoneType";
+			this.txtPhoneType.Size = new System.Drawing.Size(239, 21);
+			this.txtPhoneType.TabIndex = 15;
 			// 
 			// frmAddContact
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(713, 723);
+			this.ClientSize = new System.Drawing.Size(373, 296);
 			this.Controls.Add(this.lblWarning);
 			this.Controls.Add(this.grpInformation);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -124,5 +266,19 @@
 		private System.Windows.Forms.TextBox txtName;
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.GroupBox grpInformation;
+		private System.Windows.Forms.TextBox txtAddress;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox txtPhoneNr;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox txtCountry;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox txtCity;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.TextBox txtZipCode;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.ComboBox txtPhoneType;
+		private System.Windows.Forms.ComboBox txtAddressType;
 	}
 }
