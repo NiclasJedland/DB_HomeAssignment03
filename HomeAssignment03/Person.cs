@@ -10,27 +10,23 @@ namespace HomeAssignment03
 	{
 		public int ContactId { get; set; }
 		public string Name { get; set; }
-		public Dictionary<string, string> Adress { get; set; }
-		public Dictionary<string, string> PhoneNumber { get; set; }
+		public List<Adress> Adress { get; set; }
+		public List<PhoneNumber> PhoneNumber { get; set; }
 
 		public Person() { }
 
-		public Person(string name, string adress, string zipCode, string city, string phoneNumber, string email, DateTime birthday)
+		public Person(int contactId, string name, List<Adress> adress, List<PhoneNumber> phoneNumber)
 		{
-			/*
+			ContactId = contactId;
 			Name = name;
 			Adress = adress;
-			ZipCode = zipCode;
-			City = city;
-			PhoneNumber = phoneNumber;
-			Email = email;
-			Birthday = birthday;
-			*/
+			PhoneNumber = phoneNumber;			
 		}
 
 		public override string ToString()
 		{
 			return Name;
 		}
+
 	}
 }
