@@ -49,37 +49,8 @@
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ContactBook.dbo.GetAdress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="GetAdress">
-          <Key>
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="Adress" />
-          </Key>
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Adress" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="Country" Type="nvarchar" MaxLength="50" />
-          <Property Name="Type" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ContactBook.dbo.GetPhone' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="GetPhone">
-          <Key>
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="Number" />
-          </Key>
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Number" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Type" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ContactBook.dbo.vwGetLatestInsertedContact' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="vwGetLatestInsertedContact">
-          <Key>
-            <PropertyRef Name="ContactId" />
-          </Key>
-          <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
         <Association Name="FK_ContactAdress_Adress">
           <End Role="Adress" Type="Self.Adress" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -136,7 +107,6 @@ warning 6002: The table/view 'ContactBook.dbo.vwGetLatestInsertedContact' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="InsertTestSubjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spDeleteContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ContactId" Type="int" Mode="In" />
         </Function>
@@ -175,28 +145,6 @@ warning 6002: The table/view 'ContactBook.dbo.vwGetLatestInsertedContact' does n
           <EntitySet Name="ContactAdress" EntityType="Self.ContactAdress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactPhone" EntityType="Self.ContactPhone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhoneNumber" EntityType="Self.PhoneNumber" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GetAdress" EntityType="Self.GetAdress" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [GetAdress].[Name] AS [Name], 
-    [GetAdress].[Adress] AS [Adress], 
-    [GetAdress].[ZipCode] AS [ZipCode], 
-    [GetAdress].[City] AS [City], 
-    [GetAdress].[Country] AS [Country], 
-    [GetAdress].[Type] AS [Type]
-    FROM [dbo].[GetAdress] AS [GetAdress]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="GetPhone" EntityType="Self.GetPhone" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [GetPhone].[Name] AS [Name], 
-    [GetPhone].[Number] AS [Number], 
-    [GetPhone].[Type] AS [Type]
-    FROM [dbo].[GetPhone] AS [GetPhone]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="vwGetLatestInsertedContact" EntityType="Self.vwGetLatestInsertedContact" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [vwGetLatestInsertedContact].[ContactId] AS [ContactId]
-    FROM [dbo].[vwGetLatestInsertedContact] AS [vwGetLatestInsertedContact]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_ContactAdress_Adress" Association="Self.FK_ContactAdress_Adress">
             <End Role="Adress" EntitySet="Adress" />
             <End Role="ContactAdress" EntitySet="ContactAdress" />
@@ -268,27 +216,6 @@ warning 6002: The table/view 'ContactBook.dbo.vwGetLatestInsertedContact' does n
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ContactPhones" Relationship="Self.FK_ContactPhone_PhoneNumber" FromRole="PhoneNumber" ToRole="ContactPhone" />
         </EntityType>
-        <EntityType Name="GetAdress">
-          <Key>
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="Adress" />
-          </Key>
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="GetPhone">
-          <Key>
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="Number" />
-          </Key>
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_ContactAdress_Adress">
           <End Role="Adress" Type="Self.Adress" Multiplicity="1" />
           <End Role="ContactAdress" Type="Self.ContactAdress" Multiplicity="*" />
@@ -343,8 +270,6 @@ warning 6002: The table/view 'ContactBook.dbo.vwGetLatestInsertedContact' does n
           <EntitySet Name="ContactAdresses" EntityType="Self.ContactAdress" />
           <EntitySet Name="ContactPhones" EntityType="Self.ContactPhone" />
           <EntitySet Name="PhoneNumbers" EntityType="Self.PhoneNumber" />
-          <EntitySet Name="GetAdresses" EntityType="Self.GetAdress" />
-          <EntitySet Name="GetPhones" EntityType="Self.GetPhone" />
           <AssociationSet Name="FK_ContactAdress_Adress" Association="Self.FK_ContactAdress_Adress">
             <End Role="Adress" EntitySet="Adresses" />
             <End Role="ContactAdress" EntitySet="ContactAdresses" />
@@ -380,7 +305,6 @@ warning 6002: The table/view 'ContactBook.dbo.vwGetLatestInsertedContact' does n
           <FunctionImport Name="spRemovePhoneNumber">
           <Parameter Name="ContactPhoneID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="InsertTestSubjects" />
           <FunctionImport Name="spInsertNewAddress">
             <Parameter Name="ContactId" Mode="In" Type="Int32" />
             <Parameter Name="Address" Mode="In" Type="String" />
@@ -394,14 +318,7 @@ warning 6002: The table/view 'ContactBook.dbo.vwGetLatestInsertedContact' does n
             <Parameter Name="Number" Mode="In" Type="String" />
             <Parameter Name="Type" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="vwGetLatestInsertedContacts" EntityType="ContactBookModel.vwGetLatestInsertedContact" />
         </EntityContainer>
-        <EntityType Name="vwGetLatestInsertedContact">
-          <Key>
-            <PropertyRef Name="ContactId" />
-          </Key>
-          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -455,41 +372,12 @@ warning 6002: The table/view 'ContactBook.dbo.vwGetLatestInsertedContact' does n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GetAdresses">
-            <EntityTypeMapping TypeName="ContactBookModel.GetAdress">
-              <MappingFragment StoreEntitySet="GetAdress">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Adress" ColumnName="Adress" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GetPhones">
-            <EntityTypeMapping TypeName="ContactBookModel.GetPhone">
-              <MappingFragment StoreEntitySet="GetPhone">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="spDeleteContact" FunctionName="ContactBookModel.Store.spDeleteContact" />
           <FunctionImportMapping FunctionImportName="spInsertContact" FunctionName="ContactBookModel.Store.spInsertContact" />
           <FunctionImportMapping FunctionImportName="spRemoveAddress" FunctionName="ContactBookModel.Store.spRemoveAddress" />
           <FunctionImportMapping FunctionImportName="spRemovePhoneNumber" FunctionName="ContactBookModel.Store.spRemovePhoneNumber" />
-          <FunctionImportMapping FunctionImportName="InsertTestSubjects" FunctionName="ContactBookModel.Store.InsertTestSubjects" />
           <FunctionImportMapping FunctionImportName="spInsertNewAddress" FunctionName="ContactBookModel.Store.spInsertNewAddress" />
           <FunctionImportMapping FunctionImportName="spInsertNewPhone" FunctionName="ContactBookModel.Store.spInsertNewPhone" />
-          <EntitySetMapping Name="vwGetLatestInsertedContacts">
-            <EntityTypeMapping TypeName="ContactBookModel.vwGetLatestInsertedContact">
-              <MappingFragment StoreEntitySet="vwGetLatestInsertedContact">
-                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

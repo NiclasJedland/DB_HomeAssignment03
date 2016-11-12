@@ -32,9 +32,6 @@ namespace HomeAssignment03
         public virtual DbSet<ContactAdress> ContactAdresses { get; set; }
         public virtual DbSet<ContactPhone> ContactPhones { get; set; }
         public virtual DbSet<PhoneNumber> PhoneNumbers { get; set; }
-        public virtual DbSet<GetAdress> GetAdresses { get; set; }
-        public virtual DbSet<GetPhone> GetPhones { get; set; }
-        public virtual DbSet<vwGetLatestInsertedContact> vwGetLatestInsertedContacts { get; set; }
     
         public virtual int spDeleteContact(Nullable<int> contactId)
         {
@@ -98,11 +95,6 @@ namespace HomeAssignment03
                 new ObjectParameter("ContactPhoneID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRemovePhoneNumber", contactPhoneIDParameter);
-        }
-    
-        public virtual int InsertTestSubjects()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertTestSubjects");
         }
     
         public virtual int spInsertNewAddress(Nullable<int> contactId, string address, string zipCode, string city, string country, string type)

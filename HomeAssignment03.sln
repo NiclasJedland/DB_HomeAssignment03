@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAssignment03", "HomeAssignment03\HomeAssignment03.csproj", "{968A36EE-92AD-4F7B-A2C6-DE45BC9DB53D}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AddressBookSQLDatabase", "AddressBookSQLDatabase\AddressBookSQLDatabase.sqlproj", "{2C01017B-DD58-4F24-BF75-AF5135FF052F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{968A36EE-92AD-4F7B-A2C6-DE45BC9DB53D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{968A36EE-92AD-4F7B-A2C6-DE45BC9DB53D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{968A36EE-92AD-4F7B-A2C6-DE45BC9DB53D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C01017B-DD58-4F24-BF75-AF5135FF052F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C01017B-DD58-4F24-BF75-AF5135FF052F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C01017B-DD58-4F24-BF75-AF5135FF052F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2C01017B-DD58-4F24-BF75-AF5135FF052F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C01017B-DD58-4F24-BF75-AF5135FF052F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C01017B-DD58-4F24-BF75-AF5135FF052F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

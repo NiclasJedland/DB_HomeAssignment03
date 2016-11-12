@@ -21,7 +21,6 @@ namespace HomeAssignment03
 		#region Events
 		private void Adressbook_Load(object sender, EventArgs e)
 		{
-			// TODO: This line of code loads data into the 'contactBookDataSet.Contact' table. You can move, or remove it, as needed.
 			UpdateList();
 			dgPhone.BackgroundColor = SystemColors.Control;
 			dgAddress.BackgroundColor = SystemColors.Control;

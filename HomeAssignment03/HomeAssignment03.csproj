@@ -96,20 +96,11 @@
     <Compile Include="frmAddContact.Designer.cs">
       <DependentUpon>frmAddContact.cs</DependentUpon>
     </Compile>
-    <Compile Include="GetAdress.cs">
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GetPhone.cs">
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
     <Compile Include="PhoneNumber.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="vwGetLatestInsertedContact.cs">
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AddressBook.resx">
       <DependentUpon>AddressBook.cs</DependentUpon>
     </EmbeddedResource>
