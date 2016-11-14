@@ -16,7 +16,21 @@ namespace HomeAssignment03
 		public Adressbook()
 		{
 			InitializeComponent();
-		}
+
+			/*
+			using(var ctx = new PersonContext())
+			{
+
+				List<PhoneNumber> newPhone = new List<PhoneNumber>() { new PhoneNumber { Number = txtTelenr.Text } };
+				PhoneType newNrType = new PhoneType() { NrType = ComboBoxTelefontyp.Text, PhoneNumber = newPhone };
+				List<Address> newAddress = new List<Address>() { new Address { StreetAdress = txtAdress.Text, City = txtCity.Text, ZipCode = int.Parse(txtZipCode.Text) } };
+				AddressType newAddressTyp = new AddressType() { Type = ComboboxAdresstyp.Text, Address = newAddress };
+				Person newPerson = new Person() { Name = txtNamn.Text, AddressType = newAddressTyp, PhoneType = newNrType };
+				ctx.Persons.Add(newPerson);
+				ctx.SaveChanges();
+			}
+	*/
+	}
 
 		#region Events
 		private void Adressbook_Load(object sender, EventArgs e)
