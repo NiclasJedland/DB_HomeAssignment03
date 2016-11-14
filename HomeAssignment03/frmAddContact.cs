@@ -14,7 +14,7 @@ namespace HomeAssignment03
 {
 	public partial class frmAddContact : Form
 	{
-		ContactBookEntities db = new ContactBookEntities();
+		ContactContext db = new ContactContext();
 
 		//Custom Events
 		public event EventHandler<EventArgs> SavedDatabase;
@@ -122,7 +122,16 @@ namespace HomeAssignment03
 		{
 			if(txtName.Text.Trim().Length > 0)
 			{
-				db.spInsertContact(txtName.Text, txtPhoneNr.Text, txtPhoneType.Text, txtAddress.Text, txtZipCode.Text, txtCity.Text, txtCountry.Text, txtAddressType.Text);
+				var newContact = new Contact();
+
+				newContact.Name = txtName.Text;
+
+				newContact.Addresses = new List<Address>() { new Address() { Address1 = txtAddress.Text, ZipCode = txtZipCode.Text, City = txtCity.Text, Country = txtCountry.Text, Type = new AddressType(){ Type = txtAddressType.Text } } };
+
+				newContact.PhoneNumbers = new List<PhoneNumber>() { new PhoneNumber() { Number = txtPhoneNr.Text, Type = new PhoneType() { Type = txtPhoneType.Text } } };
+
+				db.Contacts.Add(newContact);
+				db.SaveChanges();
 
 				OnSavedDatabase();
 				this.Close();
@@ -136,7 +145,7 @@ namespace HomeAssignment03
 				lblName.ForeColor = Color.Red;
 				lblWarning.ForeColor = Color.Red;
 				lblWarning.Text = "Name Required!";
-			}	
+			}
 		}
 
 		private void FadeWarningText(object sender, EventArgs e)
@@ -146,3 +155,4 @@ namespace HomeAssignment03
 		}
 	}
 }
+

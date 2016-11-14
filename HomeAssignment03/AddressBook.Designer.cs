@@ -95,7 +95,10 @@
 			this.txtSearch.Name = "txtSearch";
 			this.txtSearch.Size = new System.Drawing.Size(521, 20);
 			this.txtSearch.TabIndex = 0;
+			this.txtSearch.Text = "Search";
 			this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+			this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
+			this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
 			// 
 			// grpName
 			// 
@@ -105,7 +108,7 @@
 			this.grpName.Location = new System.Drawing.Point(213, 11);
 			this.grpName.Name = "grpName";
 			this.grpName.Size = new System.Drawing.Size(329, 50);
-			this.grpName.TabIndex = 5;
+			this.grpName.TabIndex = 2;
 			this.grpName.TabStop = false;
 			this.grpName.Text = "Information";
 			// 
@@ -114,7 +117,7 @@
 			this.btnChangeName.Location = new System.Drawing.Point(236, 17);
 			this.btnChangeName.Name = "btnChangeName";
 			this.btnChangeName.Size = new System.Drawing.Size(88, 23);
-			this.btnChangeName.TabIndex = 4;
+			this.btnChangeName.TabIndex = 2;
 			this.btnChangeName.Text = "Change Name";
 			this.btnChangeName.UseVisualStyleBackColor = true;
 			this.btnChangeName.Click += new System.EventHandler(this.btnChangeName_Click);
@@ -124,7 +127,7 @@
 			this.txtName.Location = new System.Drawing.Point(50, 19);
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(180, 20);
-			this.txtName.TabIndex = 0;
+			this.txtName.TabIndex = 1;
 			// 
 			// lblName
 			// 
@@ -140,7 +143,7 @@
 			this.btnAddContact.Location = new System.Drawing.Point(102, 245);
 			this.btnAddContact.Name = "btnAddContact";
 			this.btnAddContact.Size = new System.Drawing.Size(90, 35);
-			this.btnAddContact.TabIndex = 0;
+			this.btnAddContact.TabIndex = 1;
 			this.btnAddContact.Text = "Add A New Contact";
 			this.btnAddContact.UseVisualStyleBackColor = true;
 			this.btnAddContact.Click += new System.EventHandler(this.btnAddContact_Click);
@@ -162,7 +165,7 @@
 			this.btnRemoveContact.Location = new System.Drawing.Point(6, 245);
 			this.btnRemoveContact.Name = "btnRemoveContact";
 			this.btnRemoveContact.Size = new System.Drawing.Size(90, 35);
-			this.btnRemoveContact.TabIndex = 1;
+			this.btnRemoveContact.TabIndex = 2;
 			this.btnRemoveContact.Text = "Remove Contact";
 			this.btnRemoveContact.UseVisualStyleBackColor = true;
 			this.btnRemoveContact.Click += new System.EventHandler(this.btnRemoveContact_Click);
@@ -175,6 +178,7 @@
 			this.lstPeople.Size = new System.Drawing.Size(188, 212);
 			this.lstPeople.TabIndex = 0;
 			this.lstPeople.SelectedIndexChanged += new System.EventHandler(this.lstPeople_SelectedIndexChanged);
+			this.lstPeople.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstPeople_KeyDown);
 			// 
 			// lblWarning
 			// 
@@ -215,7 +219,7 @@
 			this.btnAddPhone.Location = new System.Drawing.Point(223, 190);
 			this.btnAddPhone.Name = "btnAddPhone";
 			this.btnAddPhone.Size = new System.Drawing.Size(100, 34);
-			this.btnAddPhone.TabIndex = 0;
+			this.btnAddPhone.TabIndex = 1;
 			this.btnAddPhone.Text = "Add New Phone Number";
 			this.btnAddPhone.UseVisualStyleBackColor = true;
 			this.btnAddPhone.Click += new System.EventHandler(this.btnAddPhone_Click);
@@ -225,7 +229,7 @@
 			this.btnRemovePhone.Location = new System.Drawing.Point(117, 191);
 			this.btnRemovePhone.Name = "btnRemovePhone";
 			this.btnRemovePhone.Size = new System.Drawing.Size(100, 34);
-			this.btnRemovePhone.TabIndex = 1;
+			this.btnRemovePhone.TabIndex = 0;
 			this.btnRemovePhone.Text = "Remove Phone Number";
 			this.btnRemovePhone.UseVisualStyleBackColor = true;
 			this.btnRemovePhone.Click += new System.EventHandler(this.btnRemovePhone_Click);
@@ -287,7 +291,7 @@
 			this.grpAddress.Name = "grpAddress";
 			this.grpAddress.Padding = new System.Windows.Forms.Padding(2);
 			this.grpAddress.Size = new System.Drawing.Size(534, 218);
-			this.grpAddress.TabIndex = 25;
+			this.grpAddress.TabIndex = 4;
 			this.grpAddress.TabStop = false;
 			this.grpAddress.Text = "Address";
 			// 
@@ -311,7 +315,7 @@
 			this.dgAddress.RowHeadersVisible = false;
 			this.dgAddress.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgAddress.Size = new System.Drawing.Size(515, 152);
-			this.dgAddress.TabIndex = 1;
+			this.dgAddress.TabIndex = 0;
 			this.dgAddress.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgAddress_CellValueChanged);
 			// 
 			// Type
@@ -367,7 +371,7 @@
 			this.btnAddAddress.Location = new System.Drawing.Point(267, 176);
 			this.btnAddAddress.Name = "btnAddAddress";
 			this.btnAddAddress.Size = new System.Drawing.Size(100, 34);
-			this.btnAddAddress.TabIndex = 0;
+			this.btnAddAddress.TabIndex = 2;
 			this.btnAddAddress.Text = "Add New Address";
 			this.btnAddAddress.UseVisualStyleBackColor = true;
 			this.btnAddAddress.Click += new System.EventHandler(this.btnAddAddress_Click);
@@ -393,7 +397,7 @@
 			this.grpAddPhone.Location = new System.Drawing.Point(215, 62);
 			this.grpAddPhone.Name = "grpAddPhone";
 			this.grpAddPhone.Size = new System.Drawing.Size(327, 130);
-			this.grpAddPhone.TabIndex = 4;
+			this.grpAddPhone.TabIndex = 3;
 			this.grpAddPhone.TabStop = false;
 			this.grpAddPhone.Text = "Add New Phonenumber";
 			this.grpAddPhone.Visible = false;
@@ -431,7 +435,7 @@
 			this.label2.Location = new System.Drawing.Point(10, 50);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(34, 13);
-			this.label2.TabIndex = 3;
+			this.label2.TabIndex = 0;
 			this.label2.Text = "Type:";
 			// 
 			// label1
@@ -477,7 +481,7 @@
 			this.txtCountry.Location = new System.Drawing.Point(94, 97);
 			this.txtCountry.Name = "txtCountry";
 			this.txtCountry.Size = new System.Drawing.Size(220, 20);
-			this.txtCountry.TabIndex = 3;
+			this.txtCountry.TabIndex = 5;
 			// 
 			// label7
 			// 
@@ -485,7 +489,7 @@
 			this.label7.Location = new System.Drawing.Point(15, 100);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(46, 13);
-			this.label7.TabIndex = 18;
+			this.label7.TabIndex = 4;
 			this.label7.Text = "Country:";
 			// 
 			// txtCity
@@ -493,7 +497,7 @@
 			this.txtCity.Location = new System.Drawing.Point(94, 71);
 			this.txtCity.Name = "txtCity";
 			this.txtCity.Size = new System.Drawing.Size(220, 20);
-			this.txtCity.TabIndex = 2;
+			this.txtCity.TabIndex = 3;
 			// 
 			// label6
 			// 
@@ -501,7 +505,7 @@
 			this.label6.Location = new System.Drawing.Point(15, 74);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(27, 13);
-			this.label6.TabIndex = 16;
+			this.label6.TabIndex = 2;
 			this.label6.Text = "City:";
 			// 
 			// txtZipCode
@@ -517,7 +521,7 @@
 			this.label5.Location = new System.Drawing.Point(15, 48);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(53, 13);
-			this.label5.TabIndex = 14;
+			this.label5.TabIndex = 0;
 			this.label5.Text = "Zip Code:";
 			// 
 			// btnAddAddressCancel
@@ -552,7 +556,7 @@
 			this.txtAddressType.Location = new System.Drawing.Point(94, 123);
 			this.txtAddressType.Name = "txtAddressType";
 			this.txtAddressType.Size = new System.Drawing.Size(220, 20);
-			this.txtAddressType.TabIndex = 4;
+			this.txtAddressType.TabIndex = 7;
 			// 
 			// label4
 			// 
@@ -569,7 +573,7 @@
 			this.label3.Location = new System.Drawing.Point(15, 126);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(34, 13);
-			this.label3.TabIndex = 9;
+			this.label3.TabIndex = 6;
 			this.label3.Text = "Type:";
 			// 
 			// Adressbook

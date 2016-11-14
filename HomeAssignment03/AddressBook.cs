@@ -11,26 +11,13 @@ namespace HomeAssignment03
 {
 	public partial class Adressbook : Form
 	{
-		ContactBookEntities db = new ContactBookEntities();
+		ContactContext db = new ContactContext();
 
 		public Adressbook()
 		{
 			InitializeComponent();
-
-			/*
-			using(var ctx = new PersonContext())
-			{
-
-				List<PhoneNumber> newPhone = new List<PhoneNumber>() { new PhoneNumber { Number = txtTelenr.Text } };
-				PhoneType newNrType = new PhoneType() { NrType = ComboBoxTelefontyp.Text, PhoneNumber = newPhone };
-				List<Address> newAddress = new List<Address>() { new Address { StreetAdress = txtAdress.Text, City = txtCity.Text, ZipCode = int.Parse(txtZipCode.Text) } };
-				AddressType newAddressTyp = new AddressType() { Type = ComboboxAdresstyp.Text, Address = newAddress };
-				Person newPerson = new Person() { Name = txtNamn.Text, AddressType = newAddressTyp, PhoneType = newNrType };
-				ctx.Persons.Add(newPerson);
-				ctx.SaveChanges();
-			}
-	*/
-	}
+			txtSearch.ForeColor = Color.Gray;
+		}
 
 		#region Events
 		private void Adressbook_Load(object sender, EventArgs e)
@@ -53,7 +40,14 @@ namespace HomeAssignment03
 
 					var toBeRemoved = (Contact)lstPeople.SelectedItem;
 
-					db.spDeleteContact(toBeRemoved.ContactId);
+					foreach(var item in toBeRemoved.Addresses)
+					{
+						
+					}
+
+					db.Contacts.Remove(toBeRemoved);
+					
+					db.SaveChanges();
 
 					lblWarning.ForeColor = Color.Red;
 					lblWarning.Text = toBeRemoved + " Removed!";
@@ -82,7 +76,7 @@ namespace HomeAssignment03
 					var toBeRemoved = (Contact)lstPeople.SelectedItem;
 					var contactPhoneID = int.Parse(dgPhone.SelectedRows[0].Cells[3].Value.ToString());
 
-					db.spRemovePhoneNumber(contactPhoneID);
+					//db.spRemovePhoneNumber(contactPhoneID);
 
 					UpdateList();
 				}
@@ -115,7 +109,7 @@ namespace HomeAssignment03
 			{
 				var toBeUpdated = (Contact)lstPeople.SelectedItem;
 
-				db.spInsertNewPhone(toBeUpdated.ContactId, txtPhoneNumber.Text, txtPhoneType.Text);
+				//			db.spInsertNewPhone(toBeUpdated.ContactId, txtPhoneNumber.Text, txtPhoneType.Text);
 
 				ResetAllTextFields();
 
@@ -132,7 +126,7 @@ namespace HomeAssignment03
 					var toBeRemoved = (Contact)lstPeople.SelectedItem;
 					var contactAddressID = int.Parse(dgAddress.SelectedRows[0].Cells[6].Value.ToString());
 
-					db.spRemoveAddress(contactAddressID);
+					//					db.spRemoveAddress(contactAddressID);
 
 					UpdateList();
 				}
@@ -165,7 +159,7 @@ namespace HomeAssignment03
 			{
 				var toBeUpdated = (Contact)lstPeople.SelectedItem;
 
-				db.spInsertNewAddress(toBeUpdated.ContactId, txtAddress.Text, txtZipCode.Text, txtCity.Text, txtCountry.Text, txtAddressType.Text);
+				//				db.spInsertNewAddress(toBeUpdated.ContactId, txtAddress.Text, txtZipCode.Text, txtCity.Text, txtCountry.Text, txtAddressType.Text);
 
 				ResetAllTextFields();
 				UpdateList();
@@ -201,17 +195,17 @@ namespace HomeAssignment03
 				txtName.Text = selectedItem.Name;
 
 
-				foreach(var item in selectedItem.ContactPhones)
-				{
-					var phoneNumber = item.PhoneNumber;
-					dgPhone.Rows.Add(phoneNumber.Type, phoneNumber.Number, phoneNumber.PhoneId, item.ContactPhoneId);
-				}
+				//foreach(var item in selectedItem)
+				//{
+				//	var phoneNumber = item.PhoneNumber;
+				//	dgPhone.Rows.Add(phoneNumber.Type, phoneNumber.Number, phoneNumber.PhoneId, item.ContactPhoneId);
+				//}
 
-				foreach(var item in selectedItem.ContactAdresses)
-				{
-					var address = item.Adress;
-					dgAddress.Rows.Add(address.Type, address.Adress1, address.ZipCode, address.City, address.Country, address.AdressId, item.ContactAdressId);
-				}
+				//foreach(var item in selectedItem.ContactAdresses)
+				//{
+				//	var address = item.Adress;
+				//	dgAddress.Rows.Add(address.Type, address.Adress1, address.ZipCode, address.City, address.Country, address.AdressId, item.ContactAdressId);
+				//}
 			}
 		}
 
@@ -237,23 +231,23 @@ namespace HomeAssignment03
 				var toBeUpdated = (Contact)lstPeople.SelectedItem;
 
 				int i = 0;
-				foreach(var item in toBeUpdated.ContactAdresses)
-				{
-					item.Adress.Type = dgAddress.Rows[i].Cells[0].Value.ToString();
-					item.Adress.Adress1 = dgAddress.Rows[i].Cells[1].Value.ToString();
-					item.Adress.ZipCode = dgAddress.Rows[i].Cells[2].Value.ToString();
-					item.Adress.City = dgAddress.Rows[i].Cells[3].Value.ToString();
-					item.Adress.Country = dgAddress.Rows[i].Cells[4].Value.ToString();
-					i++;
-				}
+				//foreach(var item in toBeUpdated.ContactAdresses)
+				//{
+				//	item.Adress.Type = dgAddress.Rows[i].Cells[0].Value.ToString();
+				//	item.Adress.Adress1 = dgAddress.Rows[i].Cells[1].Value.ToString();
+				//	item.Adress.ZipCode = dgAddress.Rows[i].Cells[2].Value.ToString();
+				//	item.Adress.City = dgAddress.Rows[i].Cells[3].Value.ToString();
+				//	item.Adress.Country = dgAddress.Rows[i].Cells[4].Value.ToString();
+				//	i++;
+				//}
 
-				i = 0;
-				foreach(var item in toBeUpdated.ContactPhones)
-				{
-					item.PhoneNumber.Type = dgPhone.Rows[i].Cells[0].Value.ToString();
-					item.PhoneNumber.Number = dgPhone.Rows[i].Cells[1].Value.ToString();
-					i++;
-				}
+				//i = 0;
+				//foreach(var item in toBeUpdated.ContactPhones)
+				//{
+				//	item.PhoneNumber.Type = dgPhone.Rows[i].Cells[0].Value.ToString();
+				//	item.PhoneNumber.Number = dgPhone.Rows[i].Cells[1].Value.ToString();
+				//	i++;
+				//}
 
 				db.Entry(toBeUpdated).State = EntityState.Modified;
 				db.SaveChanges();
@@ -277,7 +271,7 @@ namespace HomeAssignment03
 		private void UpdateList()
 		{
 			db.Dispose();
-			db = new ContactBookEntities();
+			db = new ContactContext();
 
 			var selectedIndex = lstPeople.SelectedIndex;
 
@@ -289,19 +283,19 @@ namespace HomeAssignment03
 
 			var people = db.Contacts.OrderBy(s => s.Name).ToList();
 
-			if(txtSearch.Text.Length > 0)
-			{
-				var searchText = txtSearch.Text.Trim().ToLower();
-				people = db.Contacts.Where(s =>
-					s.Name.ToLower().Contains(searchText)
-					|| s.ContactAdresses.Any(a => a.Adress.Adress1.Contains(searchText))
-					|| s.ContactAdresses.Any(a => a.Adress.City.Contains(searchText))
-					|| s.ContactAdresses.Any(a => a.Adress.Country.Contains(searchText))
-					|| s.ContactAdresses.Any(a => a.Adress.ZipCode.Contains(searchText))
-					|| s.ContactAdresses.Any(a => a.Adress.Type.Contains(searchText))
-					|| s.ContactPhones.Any(a => a.PhoneNumber.Type.Contains(searchText))
-					).OrderBy(s => s.Name).ToList();
-			}
+			//if(txtSearch.Text.Length > 0 && txtSearch.Text != "Search")
+			//{
+			//	var searchText = txtSearch.Text.Trim().ToLower();
+			//	people = db.Contacts.Where(s =>
+			//		s.Name.ToLower().Contains(searchText)
+			//		|| s.ContactAdresses.Any(a => a.Adress.Adress1.Contains(searchText))
+			//		|| s.ContactAdresses.Any(a => a.Adress.City.Contains(searchText))
+			//		|| s.ContactAdresses.Any(a => a.Adress.Country.Contains(searchText))
+			//		|| s.ContactAdresses.Any(a => a.Adress.ZipCode.Contains(searchText))
+			//		|| s.ContactAdresses.Any(a => a.Adress.Type.Contains(searchText))
+			//		|| s.ContactPhones.Any(a => a.PhoneNumber.Type.Contains(searchText))
+			//		).OrderBy(s => s.Name).ToList();
+			//}
 
 			foreach(var item in people)
 			{
@@ -348,23 +342,26 @@ namespace HomeAssignment03
 		#endregion
 
 		#region Keypress
-		private void txtZipCode_KeyPress(object sender, KeyPressEventArgs e)
+
+		private void lstPeople_KeyDown(object sender, KeyEventArgs e)
 		{
-			if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+			if(e.KeyCode == Keys.Delete)
 			{
-				e.Handled = true;
+				btnRemoveContact.PerformClick();
 			}
 		}
 
-		private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+		private void txtSearch_Enter(object sender, EventArgs e)
 		{
-			if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '+') && (e.KeyChar != '-'))
-			{
-				e.Handled = true;
-			}
+			txtSearch.ForeColor = Color.Black;
+			txtSearch.Text = "";
 		}
 
-
+		private void txtSearch_Leave(object sender, EventArgs e)
+		{
+			txtSearch.ForeColor = Color.Gray;
+			txtSearch.Text = "Search";
+		}
 		#endregion
 	}
 

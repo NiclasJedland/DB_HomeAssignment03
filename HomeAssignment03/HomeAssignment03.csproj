@@ -12,6 +12,21 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,48 +72,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adress.cs">
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contact.cs">
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ContactAdress.cs">
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ContactPhone.cs">
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Database.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Database.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Address.cs" />
+    <Compile Include="AddressType.cs" />
+    <Compile Include="Contact.cs" />
     <Compile Include="AddressBook.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddressBook.Designer.cs">
       <DependentUpon>AddressBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="ContactContext.cs" />
     <Compile Include="frmAddContact.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAddContact.Designer.cs">
       <DependentUpon>frmAddContact.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhoneNumber.cs">
-      <DependentUpon>Database.tt</DependentUpon>
+    <Compile Include="Migrations\201611142150369_first.cs" />
+    <Compile Include="Migrations\201611142150369_first.Designer.cs">
+      <DependentUpon>201611142150369_first.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PhoneNumber.cs" />
+    <Compile Include="PhoneType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddressBook.resx">
@@ -106,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddContact.resx">
       <DependentUpon>frmAddContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611142150369_first.resx">
+      <DependentUpon>201611142150369_first.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -116,13 +115,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="Database.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Database.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Database.edmx.diagram">
-      <DependentUpon>Database.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -138,19 +130,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Database.edmx</DependentUpon>
-      <LastGenOutput>Database.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Database.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Database.edmx</DependentUpon>
-      <LastGenOutput>Database.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
