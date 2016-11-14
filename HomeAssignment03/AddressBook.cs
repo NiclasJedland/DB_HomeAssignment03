@@ -237,16 +237,16 @@ namespace HomeAssignment03
 				foreach(var item in toBeUpdated.ContactPhones)
 				{
 					item.PhoneNumber.Type = dgPhone.Rows[i].Cells[0].Value.ToString();
-					item.PhoneNumber.Number = dgPhone.Rows[i].Cells[1].Value.ToString();					
+					item.PhoneNumber.Number = dgPhone.Rows[i].Cells[1].Value.ToString();
 					i++;
 				}
 
 				db.Entry(toBeUpdated).State = EntityState.Modified;
 				db.SaveChanges();
-				
+
 				lblWarning.ForeColor = Color.Green;
 				lblWarning.Text = toBeUpdated.Name + " Updated!";
-				
+
 				UpdateList();
 
 				txtSearch.Text = "";
@@ -354,6 +354,12 @@ namespace HomeAssignment03
 		#endregion
 	}
 
-
+	public partial class Contact
+	{
+		public override string ToString()
+		{
+			return Name;
+		}
+	}
 
 }
