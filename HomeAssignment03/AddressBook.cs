@@ -38,23 +38,17 @@ namespace HomeAssignment03
 					timer.Enabled = true;
 					timer.Tick += new EventHandler(FadeWarningText);
 
-					var toBeRemoved = (Contact)lstPeople.SelectedItem;
+					var selectedItem = (Contact)lstPeople.SelectedItem;
 
-					foreach(var item in toBeRemoved.Addresses)
-					{
-						
-					}
+					db.Contacts.Remove(selectedItem);
 
-					db.Contacts.Remove(toBeRemoved);
-					
 					db.SaveChanges();
 
 					lblWarning.ForeColor = Color.Red;
-					lblWarning.Text = toBeRemoved + " Removed!";
+					lblWarning.Text = selectedItem + " Removed!";
 
 					UpdateList();
 				}
-				txtSearch.Text = "";
 			}
 		}
 
@@ -73,10 +67,15 @@ namespace HomeAssignment03
 			{
 				if(MessageBox.Show("Remove Selected?", "Remove " + dgPhone.SelectedRows[0].Cells[1].Value + "?", MessageBoxButtons.YesNo) == DialogResult.Yes)
 				{
-					var toBeRemoved = (Contact)lstPeople.SelectedItem;
-					var contactPhoneID = int.Parse(dgPhone.SelectedRows[0].Cells[3].Value.ToString());
+					var selectedItem = (Contact)lstPeople.SelectedItem;
+					var selectedPhone =(PhoneNumber)dgPhone.SelectedRows[0].Tag;
 
-					//db.spRemovePhoneNumber(contactPhoneID);
+					selectedPhone.Type = null;
+					selectedItem.PhoneNumbers.Remove(selectedPhone);
+
+					db.Entry(selectedPhone).State = EntityState.Deleted;					
+					db.Entry(selectedItem).State = EntityState.Modified;
+					db.SaveChanges();
 
 					UpdateList();
 				}
@@ -107,12 +106,18 @@ namespace HomeAssignment03
 		{
 			if(lstPeople.SelectedItem != null)
 			{
-				var toBeUpdated = (Contact)lstPeople.SelectedItem;
+				var selectedItem = (Contact)lstPeople.SelectedItem;
 
-				//			db.spInsertNewPhone(toBeUpdated.ContactId, txtPhoneNumber.Text, txtPhoneType.Text);
+				var newType = new PhoneType() { Type = txtPhoneType.Text };
+				if(db.PhoneTypes.Any(s => s.Type.Trim().ToLower() == txtPhoneType.Text.Trim().ToLower()))
+					newType = db.PhoneTypes.Where(s => s.Type.Trim().ToLower() == txtPhoneType.Text.Trim().ToLower()).FirstOrDefault();
+
+				selectedItem.PhoneNumbers.Add(new PhoneNumber() { Number = txtPhoneNumber.Text, Type = newType });
+
+				db.Entry(selectedItem).State = EntityState.Modified;
+				db.SaveChanges();
 
 				ResetAllTextFields();
-
 				UpdateList();
 			}
 		}
@@ -123,10 +128,15 @@ namespace HomeAssignment03
 			{
 				if(MessageBox.Show("Remove Selected?", "Remove " + dgAddress.SelectedRows[0].Cells[1].Value + "?", MessageBoxButtons.YesNo) == DialogResult.Yes)
 				{
-					var toBeRemoved = (Contact)lstPeople.SelectedItem;
-					var contactAddressID = int.Parse(dgAddress.SelectedRows[0].Cells[6].Value.ToString());
+					var selectedItem = (Contact)lstPeople.SelectedItem;
+					var selectedAddress = (Address)dgAddress.SelectedRows[0].Tag;
 
-					//					db.spRemoveAddress(contactAddressID);
+					selectedAddress.Type = null;
+					selectedItem.Addresses.Remove(selectedAddress);
+
+					db.Entry(selectedAddress).State = EntityState.Deleted;
+					db.Entry(selectedItem).State = EntityState.Modified;
+					db.SaveChanges();
 
 					UpdateList();
 				}
@@ -157,9 +167,16 @@ namespace HomeAssignment03
 		{
 			if(lstPeople.SelectedItem != null)
 			{
-				var toBeUpdated = (Contact)lstPeople.SelectedItem;
+				var selectedItem = (Contact)lstPeople.SelectedItem;
 
-				//				db.spInsertNewAddress(toBeUpdated.ContactId, txtAddress.Text, txtZipCode.Text, txtCity.Text, txtCountry.Text, txtAddressType.Text);
+				selectedItem.Addresses.Add(new Address() { Address1 = txtAddress.Text, ZipCode = txtZipCode.Text, City = txtCity.Text, Country = txtCountry.Text, Type = new AddressType() { Type = txtAddressType.Text } });
+
+				var newType = new AddressType() { Type = txtAddressType.Text };
+				if(db.AddressTypes.Any(s => s.Type.Trim().ToLower() == txtAddressType.Text.Trim().ToLower()))
+					newType = db.AddressTypes.Where(s => s.Type.Trim().ToLower() == txtAddressType.Text.Trim().ToLower()).FirstOrDefault();
+
+				db.Entry(selectedItem).State = EntityState.Modified;
+				db.SaveChanges();
 
 				ResetAllTextFields();
 				UpdateList();
@@ -172,40 +189,14 @@ namespace HomeAssignment03
 			{
 				if(MessageBox.Show("Change name?", "Change name to" + txtName.Text + "?", MessageBoxButtons.YesNo) == DialogResult.Yes)
 				{
-					var toBeUpdated = (Contact)lstPeople.SelectedItem;
-					toBeUpdated.Name = txtName.Text;
+					var selectedItem = (Contact)lstPeople.SelectedItem;
+					selectedItem.Name = txtName.Text;
 
-					db.Entry(toBeUpdated).State = EntityState.Modified;
+					db.Entry(selectedItem).State = EntityState.Modified;
 					db.SaveChanges();
 
 					UpdateList();
 				}
-			}
-		}
-
-		private void lstPeople_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if(lstPeople.SelectedItem != null)
-			{
-				dgPhone.Rows.Clear();
-				dgAddress.Rows.Clear();
-
-				var selectedItem = (Contact)lstPeople.SelectedItem;
-
-				txtName.Text = selectedItem.Name;
-
-
-				//foreach(var item in selectedItem)
-				//{
-				//	var phoneNumber = item.PhoneNumber;
-				//	dgPhone.Rows.Add(phoneNumber.Type, phoneNumber.Number, phoneNumber.PhoneId, item.ContactPhoneId);
-				//}
-
-				//foreach(var item in selectedItem.ContactAdresses)
-				//{
-				//	var address = item.Adress;
-				//	dgAddress.Rows.Add(address.Type, address.Adress1, address.ZipCode, address.City, address.Country, address.AdressId, item.ContactAdressId);
-				//}
 			}
 		}
 
@@ -219,51 +210,38 @@ namespace HomeAssignment03
 			SaveChanges();
 		}
 
-		public void SaveChanges()
-		{
-			if(lstPeople.SelectedItem != null)
-			{
-				Timer timer = new Timer();
-				timer.Interval = 3000;
-				timer.Enabled = true;
-				timer.Tick += new EventHandler(FadeWarningText);
-
-				var toBeUpdated = (Contact)lstPeople.SelectedItem;
-
-				int i = 0;
-				//foreach(var item in toBeUpdated.ContactAdresses)
-				//{
-				//	item.Adress.Type = dgAddress.Rows[i].Cells[0].Value.ToString();
-				//	item.Adress.Adress1 = dgAddress.Rows[i].Cells[1].Value.ToString();
-				//	item.Adress.ZipCode = dgAddress.Rows[i].Cells[2].Value.ToString();
-				//	item.Adress.City = dgAddress.Rows[i].Cells[3].Value.ToString();
-				//	item.Adress.Country = dgAddress.Rows[i].Cells[4].Value.ToString();
-				//	i++;
-				//}
-
-				//i = 0;
-				//foreach(var item in toBeUpdated.ContactPhones)
-				//{
-				//	item.PhoneNumber.Type = dgPhone.Rows[i].Cells[0].Value.ToString();
-				//	item.PhoneNumber.Number = dgPhone.Rows[i].Cells[1].Value.ToString();
-				//	i++;
-				//}
-
-				db.Entry(toBeUpdated).State = EntityState.Modified;
-				db.SaveChanges();
-
-				lblWarning.ForeColor = Color.Green;
-				lblWarning.Text = toBeUpdated.Name + " Updated!";
-
-				UpdateList();
-
-				txtSearch.Text = "";
-			}
-		}
-
 		private void txtSearch_TextChanged(object sender, EventArgs e)
 		{
 			UpdateList();
+		}
+
+		private void lstPeople_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(lstPeople.SelectedItem != null)
+			{
+				dgPhone.Rows.Clear();
+				dgAddress.Rows.Clear();
+
+				var selectedItem = (Contact)lstPeople.SelectedItem;
+
+				txtName.Text = selectedItem.Name;
+
+				int i = 0;
+				foreach(var item in selectedItem.PhoneNumbers)
+				{
+					dgPhone.Rows.Add(item.Type.Type, item.Number, item.PhoneNumberId);
+					dgPhone.Rows[i].Tag = item;
+					i++;
+				}
+
+				i = 0;
+				foreach(var item in selectedItem.Addresses)
+				{
+					dgAddress.Rows.Add(item.Type.Type, item.Address1, item.ZipCode, item.City, item.Country, item.AddressId);
+					dgAddress.Rows[i].Tag = item;
+					i++;
+				}
+			}
 		}
 		#endregion
 
@@ -283,19 +261,19 @@ namespace HomeAssignment03
 
 			var people = db.Contacts.OrderBy(s => s.Name).ToList();
 
-			//if(txtSearch.Text.Length > 0 && txtSearch.Text != "Search")
-			//{
-			//	var searchText = txtSearch.Text.Trim().ToLower();
-			//	people = db.Contacts.Where(s =>
-			//		s.Name.ToLower().Contains(searchText)
-			//		|| s.ContactAdresses.Any(a => a.Adress.Adress1.Contains(searchText))
-			//		|| s.ContactAdresses.Any(a => a.Adress.City.Contains(searchText))
-			//		|| s.ContactAdresses.Any(a => a.Adress.Country.Contains(searchText))
-			//		|| s.ContactAdresses.Any(a => a.Adress.ZipCode.Contains(searchText))
-			//		|| s.ContactAdresses.Any(a => a.Adress.Type.Contains(searchText))
-			//		|| s.ContactPhones.Any(a => a.PhoneNumber.Type.Contains(searchText))
-			//		).OrderBy(s => s.Name).ToList();
-			//}
+			if(txtSearch.Text.Length > 0 && txtSearch.Text != "Search")
+			{
+				var searchText = txtSearch.Text.Trim().ToLower();
+				people = db.Contacts.Where(s =>
+					s.Name.ToLower().Contains(searchText)
+					|| s.Addresses.Any(a => a.Address1.Contains(searchText))
+					|| s.Addresses.Any(a => a.City.Contains(searchText))
+					|| s.Addresses.Any(a => a.Country.Contains(searchText))
+					|| s.Addresses.Any(a => a.ZipCode.Contains(searchText))
+					|| s.Addresses.Any(a => a.Type.Type.Contains(searchText))
+					|| s.PhoneNumbers.Any(a => a.Type.Type.Contains(searchText))
+					).OrderBy(s => s.Name).ToList();
+			}
 
 			foreach(var item in people)
 			{
@@ -310,6 +288,48 @@ namespace HomeAssignment03
 
 			if(txtSearch.Text.Length == 0)
 				lstPeople.SelectedIndex = selectedIndex;
+		}
+
+		public void SaveChanges()
+		{
+			if(lstPeople.SelectedItem != null)
+			{
+				Timer timer = new Timer();
+				timer.Interval = 3000;
+				timer.Enabled = true;
+				timer.Tick += new EventHandler(FadeWarningText);
+
+				var selectedItem = (Contact)lstPeople.SelectedItem;
+
+				int i = 0;
+				foreach(var item in selectedItem.Addresses)
+				{
+					item.Type.Type = dgAddress.Rows[i].Cells[0].Value.ToString();
+					item.Address1 = dgAddress.Rows[i].Cells[1].Value.ToString();
+					item.ZipCode = dgAddress.Rows[i].Cells[2].Value.ToString();
+					item.City = dgAddress.Rows[i].Cells[3].Value.ToString();
+					item.Country = dgAddress.Rows[i].Cells[4].Value.ToString();
+					i++;
+				}
+
+				i = 0;
+				foreach(var item in selectedItem.PhoneNumbers)
+				{
+					item.Type.Type = dgPhone.Rows[i].Cells[0].Value.ToString();
+					item.Number = dgPhone.Rows[i].Cells[1].Value.ToString();
+					i++;
+				}
+
+				db.Entry(selectedItem).State = EntityState.Modified;
+				db.SaveChanges();
+
+				lblWarning.ForeColor = Color.Green;
+				lblWarning.Text = selectedItem.Name + " Updated!";
+
+				UpdateList();
+
+				txtSearch.Text = "";
+			}
 		}
 
 		private void ResetAllTextFields()

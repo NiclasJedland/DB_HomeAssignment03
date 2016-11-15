@@ -46,7 +46,6 @@
 			this.PhoneType = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PhoneID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ContactPhoneID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.grpAddress = new System.Windows.Forms.GroupBox();
 			this.dgAddress = new System.Windows.Forms.DataGridView();
 			this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,7 +54,6 @@
 			this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.AddressID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ContactAddressID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnAddAddress = new System.Windows.Forms.Button();
 			this.btnRemoveAddress = new System.Windows.Forms.Button();
 			this.grpAddPhone = new System.Windows.Forms.GroupBox();
@@ -243,8 +241,7 @@
 			this.dgPhone.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PhoneType,
             this.PhoneNumber,
-            this.PhoneID,
-            this.ContactPhoneID});
+            this.PhoneID});
 			this.dgPhone.Location = new System.Drawing.Point(10, 17);
 			this.dgPhone.MultiSelect = false;
 			this.dgPhone.Name = "dgPhone";
@@ -274,13 +271,6 @@
 			this.PhoneID.ReadOnly = true;
 			this.PhoneID.Visible = false;
 			// 
-			// ContactPhoneID
-			// 
-			this.ContactPhoneID.HeaderText = "ContactPhoneID";
-			this.ContactPhoneID.Name = "ContactPhoneID";
-			this.ContactPhoneID.ReadOnly = true;
-			this.ContactPhoneID.Visible = false;
-			// 
 			// grpAddress
 			// 
 			this.grpAddress.Controls.Add(this.dgAddress);
@@ -307,8 +297,7 @@
             this.ZipeCode,
             this.City,
             this.Country,
-            this.AddressID,
-            this.ContactAddressID});
+            this.AddressID});
 			this.dgAddress.Location = new System.Drawing.Point(11, 18);
 			this.dgAddress.MultiSelect = false;
 			this.dgAddress.Name = "dgAddress";
@@ -358,13 +347,6 @@
 			this.AddressID.Name = "AddressID";
 			this.AddressID.ReadOnly = true;
 			this.AddressID.Visible = false;
-			// 
-			// ContactAddressID
-			// 
-			this.ContactAddressID.HeaderText = "ContactAddressID";
-			this.ContactAddressID.Name = "ContactAddressID";
-			this.ContactAddressID.ReadOnly = true;
-			this.ContactAddressID.Visible = false;
 			// 
 			// btnAddAddress
 			// 
@@ -481,7 +463,7 @@
 			this.txtCountry.Location = new System.Drawing.Point(94, 97);
 			this.txtCountry.Name = "txtCountry";
 			this.txtCountry.Size = new System.Drawing.Size(220, 20);
-			this.txtCountry.TabIndex = 5;
+			this.txtCountry.TabIndex = 3;
 			// 
 			// label7
 			// 
@@ -497,7 +479,7 @@
 			this.txtCity.Location = new System.Drawing.Point(94, 71);
 			this.txtCity.Name = "txtCity";
 			this.txtCity.Size = new System.Drawing.Size(220, 20);
-			this.txtCity.TabIndex = 3;
+			this.txtCity.TabIndex = 2;
 			// 
 			// label6
 			// 
@@ -556,7 +538,7 @@
 			this.txtAddressType.Location = new System.Drawing.Point(94, 123);
 			this.txtAddressType.Name = "txtAddressType";
 			this.txtAddressType.Size = new System.Drawing.Size(220, 20);
-			this.txtAddressType.TabIndex = 7;
+			this.txtAddressType.TabIndex = 4;
 			// 
 			// label4
 			// 
@@ -581,14 +563,14 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(552, 590);
-			this.Controls.Add(this.grpPhone);
-			this.Controls.Add(this.grpAddress);
-			this.Controls.Add(this.grpAddPhone);
 			this.Controls.Add(this.gbSearch);
 			this.Controls.Add(this.lblWarning);
 			this.Controls.Add(this.grpName);
 			this.Controls.Add(this.grpPeople);
+			this.Controls.Add(this.grpPhone);
+			this.Controls.Add(this.grpAddress);
 			this.Controls.Add(this.grpAddAddress);
+			this.Controls.Add(this.grpAddPhone);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "Adressbook";
@@ -631,17 +613,6 @@
 		private System.Windows.Forms.Button btnRemoveContact;
 		private System.Windows.Forms.Button btnRemovePhone;
 		private System.Windows.Forms.Button btnRemoveAddress;
-		private System.Windows.Forms.DataGridViewTextBoxColumn PhoneType;
-		private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
-		private System.Windows.Forms.DataGridViewTextBoxColumn PhoneID;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ContactPhoneID;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ZipeCode;
-		private System.Windows.Forms.DataGridViewTextBoxColumn City;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Country;
-		private System.Windows.Forms.DataGridViewTextBoxColumn AddressID;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ContactAddressID;
 		private System.Windows.Forms.Button btnAddPhone;
 		private System.Windows.Forms.Button btnAddAddress;
 		private System.Windows.Forms.GroupBox grpAddPhone;
@@ -665,6 +636,15 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button btnChangeName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn PhoneType;
+		private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
+		private System.Windows.Forms.DataGridViewTextBoxColumn PhoneID;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ZipeCode;
+		private System.Windows.Forms.DataGridViewTextBoxColumn City;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Country;
+		private System.Windows.Forms.DataGridViewTextBoxColumn AddressID;
 	}
 }
 

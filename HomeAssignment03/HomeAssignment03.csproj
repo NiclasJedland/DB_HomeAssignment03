@@ -88,9 +88,9 @@
     <Compile Include="frmAddContact.Designer.cs">
       <DependentUpon>frmAddContact.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611142150369_first.cs" />
-    <Compile Include="Migrations\201611142150369_first.Designer.cs">
-      <DependentUpon>201611142150369_first.cs</DependentUpon>
+    <Compile Include="Migrations\201611151215001_first.cs" />
+    <Compile Include="Migrations\201611151215001_first.Designer.cs">
+      <DependentUpon>201611151215001_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhoneNumber.cs" />
@@ -103,8 +103,8 @@
     <EmbeddedResource Include="frmAddContact.resx">
       <DependentUpon>frmAddContact.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611142150369_first.resx">
-      <DependentUpon>201611142150369_first.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611151215001_first.resx">
+      <DependentUpon>201611151215001_first.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -16,7 +16,7 @@ namespace HomeAssignment03
 		public DbSet<AddressType> AddressTypes { get; set; }
 		public DbSet<PhoneType> PhoneTypes { get; set; }
 
-
+		/*
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Contact>().HasMany(s => s.Addresses).WithRequired().WillCascadeOnDelete(true);
@@ -27,6 +27,6 @@ namespace HomeAssignment03
 			modelBuilder.Entity<AddressType>().HasKey(s => s.AddressTypeId).Property(s => s.AddressTypeId).IsRequired();
 			modelBuilder.Entity<PhoneNumber>().HasKey(s => s.PhoneNumberId).Property(s => s.PhoneNumberId).IsRequired();
 			modelBuilder.Entity<PhoneType>().HasKey(s => s.PhoneTypeId).Property(s => s.PhoneTypeId).IsRequired();
-		}
+		}*/
 	}
 }

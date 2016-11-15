@@ -13,7 +13,7 @@ namespace HomeAssignment03.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201611142150369_first"; }
+            get { return "201611151215001_first"; }
         }
         
         string IMigrationMetadata.Source

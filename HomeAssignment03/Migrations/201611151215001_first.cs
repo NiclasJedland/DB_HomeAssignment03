@@ -17,11 +17,11 @@ namespace HomeAssignment03.Migrations
                         City = c.String(),
                         Country = c.String(),
                         Type_AddressTypeId = c.Int(),
-                        Contact_ContactId = c.Int(nullable: false),
+                        Contact_ContactId = c.Int(),
                     })
                 .PrimaryKey(t => t.AddressId)
                 .ForeignKey("dbo.AddressTypes", t => t.Type_AddressTypeId)
-                .ForeignKey("dbo.Contacts", t => t.Contact_ContactId, cascadeDelete: true)
+                .ForeignKey("dbo.Contacts", t => t.Contact_ContactId)
                 .Index(t => t.Type_AddressTypeId)
                 .Index(t => t.Contact_ContactId);
             
@@ -50,11 +50,11 @@ namespace HomeAssignment03.Migrations
                         PhoneNumberId = c.Int(nullable: false, identity: true),
                         Number = c.String(),
                         Type_PhoneTypeId = c.Int(),
-                        Contact_ContactId = c.Int(nullable: false),
+                        Contact_ContactId = c.Int(),
                     })
                 .PrimaryKey(t => t.PhoneNumberId)
                 .ForeignKey("dbo.PhoneTypes", t => t.Type_PhoneTypeId)
-                .ForeignKey("dbo.Contacts", t => t.Contact_ContactId, cascadeDelete: true)
+                .ForeignKey("dbo.Contacts", t => t.Contact_ContactId)
                 .Index(t => t.Type_PhoneTypeId)
                 .Index(t => t.Contact_ContactId);
             
